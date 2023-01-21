@@ -9,7 +9,17 @@ const ResetToken = require("../model/resetToken");
 const GoogleUser = require("../model/GoogleUser");
 
 
+//Getting All users
+exports.getAllUsers = CatchAsyncErrors(async (req, res, next) => {
+    const googleUsers = await GoogleUser.find();
+    const emailUsers = await User.find();
+    let allUsers = [...googleUsers, ...emailUsers];
+    res.send(allUsers);
 
+})
+
+
+//Create Email User
 exports.createUser = CatchAsyncErrors(async (req, res, next) => {
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
@@ -26,7 +36,7 @@ exports.createUser = CatchAsyncErrors(async (req, res, next) => {
 })
 
 
-
+//Login Email User
 exports.loginUser = CatchAsyncErrors(async (req, res, next) => {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -56,7 +66,7 @@ exports.loginUser = CatchAsyncErrors(async (req, res, next) => {
 
 })
 
-
+// Google User ErrorHandler (Signup and Login)
 exports.googleUserLogin = CatchAsyncErrors(async (req, res, next) => {
     const { email, imageUrl, name } = req.body;
     if (!email || !imageUrl || !name) {
@@ -80,16 +90,14 @@ exports.googleUserLogin = CatchAsyncErrors(async (req, res, next) => {
 })
 
 
-
-
+//Logout Function
 exports.logoutUser = CatchAsyncErrors(async (req, res, next) => {
     res.clearCookie("backendToken");
     res.status(200).json({ success: true, message: "Logged Out Successfully." });
 })
 
 
-
-
+// Updating Password for Email Account
 exports.updatePassword = CatchAsyncErrors(async (req, res, next) => {
     const { password, oldPassword } = req.body;
     if (!password || !oldPassword) {
@@ -115,7 +123,7 @@ exports.updatePassword = CatchAsyncErrors(async (req, res, next) => {
 })
 
 
-
+//Getting Email User Details
 exports.getUserDetails = CatchAsyncErrors(async (req, res, next) => {
     const loggedInUser = await User.findById(req.user._id);
     if (!loggedInUser) {
@@ -124,6 +132,8 @@ exports.getUserDetails = CatchAsyncErrors(async (req, res, next) => {
     res.status(200).json({ success: true, loggedInUser });
 })
 
+
+//Get Google User Details
 exports.getGUserDetails = CatchAsyncErrors(async (req, res, next) => {
     const loggedInUser = await GoogleUser.findById(req.user._id);
     if (!loggedInUser) {
@@ -133,7 +143,7 @@ exports.getGUserDetails = CatchAsyncErrors(async (req, res, next) => {
 })
 
 
-
+//Forgot Password EMAIL for Email Account 
 exports.forgotPassword = CatchAsyncErrors(async (req, res, next) => {
     const { email } = req.body;
     const user = await User.findOne({ email });
@@ -162,6 +172,7 @@ exports.forgotPassword = CatchAsyncErrors(async (req, res, next) => {
 })
 
 
+//Reset Password for Email Account
 exports.resetPassword = CatchAsyncErrors(async (req, res, next) => {
     const { password } = req.body;
     const token = crypto.createHash("sha256").update(req.params.token).digest("hex");

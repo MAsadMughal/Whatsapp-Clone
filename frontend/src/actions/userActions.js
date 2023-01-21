@@ -1,5 +1,26 @@
-import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, CLEAR_ERRORS, USER_LOAD_FAIL, USER_LOAD_REQUEST, USER_LOAD_SUCCESS, LOGOUT_FAIL, LOGOUT_SUCCESS, REGISTRATION_SUCCESS, REGISTRATION_REQUEST, REGISTRATION_FAIL, PROFILE_UPDATE_FAIL, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_REQUEST, UPDATE_PASSWORD_FAIL, UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAIL, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_REQUEST, RESET_PASSWORD_FAIL, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_REQUEST } from "../constants/userConstants";
+import { ALL_USERS_FAIL, ALL_USERS_REQUEST, ALL_USERS_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, CLEAR_ERRORS, USER_LOAD_FAIL, USER_LOAD_REQUEST, USER_LOAD_SUCCESS, LOGOUT_FAIL, LOGOUT_SUCCESS, REGISTRATION_SUCCESS, REGISTRATION_REQUEST, REGISTRATION_FAIL, PROFILE_UPDATE_FAIL, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_REQUEST, UPDATE_PASSWORD_FAIL, UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAIL, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_REQUEST, RESET_PASSWORD_FAIL, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_REQUEST } from "../constants/userConstants";
 import axios from "axios";
+
+//REGISTRATION OF NEW USER
+export const getAllUsers = () => async (dispatch) => {
+    try {
+        dispatch({ type: ALL_USERS_REQUEST })
+        const { data } = await axios.get(`/allUsers`);
+        dispatch({
+            type: ALL_USERS_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: ALL_USERS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+
+
+
 
 //REGISTRATION OF NEW USER
 export const registerUser = (name, email, password) => async (dispatch) => {
@@ -28,7 +49,6 @@ export const googleUserLogin = (name, email, imageUrl) => async (dispatch) => {
 
         const config = { Headers: { "Content-Type": "application/json" } }
         const { data } = await axios.post(`/googleUser`, { name, email, imageUrl }, config);
-        console.log(data);
         dispatch({
             type: REGISTRATION_SUCCESS,
             payload: data
@@ -70,7 +90,6 @@ export const loadUser = () => async (dispatch) => {
         dispatch({ type: USER_LOAD_REQUEST })
 
         const { data } = await axios.get(`/Gme`);
-        console.log(data);
         dispatch({
             type: USER_LOAD_SUCCESS,
             payload: data

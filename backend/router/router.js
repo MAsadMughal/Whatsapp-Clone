@@ -1,10 +1,11 @@
 const express = require('express');
-const { createUser, loginUser, logoutUser, getUserDetails, updatePassword, forgotPassword, resetPassword, googleUser, getGUserDetails, googleUserLogin } = require('../controllers/UserControllers');
+const { createUser, loginUser, logoutUser, getUserDetails, updatePassword, forgotPassword, resetPassword, googleUser, getGUserDetails, googleUserLogin, getAllUsers } = require('../controllers/UserControllers');
 const { isUserAuthenticated, isGUserAuthenticated } = require('../middlewares/Auth');
 const router = express.Router();
 
 
 router.post('/Signup', createUser);
+router.get('/allUsers', getAllUsers);
 router.post('/googleUser', googleUserLogin);
 router.post('/Login', loginUser);
 router.get('/Logout', logoutUser);

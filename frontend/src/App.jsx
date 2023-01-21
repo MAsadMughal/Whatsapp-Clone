@@ -13,7 +13,7 @@ function App() {
   React.useEffect(() => {
     store.dispatch(loadUser());
   }, []);
-  const { isAuthenticated,loading } = useSelector(state => state.user);
+  const { isAuthenticated, loading } = useSelector(state => state.user);
   console.log(isAuthenticated);
   return (
     <GoogleOAuthProvider clientId='72021732566-2bjhjhedb135sjldaju1tr159473ojth.apps.googleusercontent.com'>
