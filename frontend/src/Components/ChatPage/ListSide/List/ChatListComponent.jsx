@@ -1,8 +1,8 @@
 import React from 'react'
-import "../ChatPage.css";
-import emptyImage from "../../../Images/emptyImage.png";
+import "../../ChatPage.css";
+import emptyImage from "../../../../Images/emptyImage.png";
 import { Typography } from '@mui/material';
-const ChatListComponent = ({ user }) => {
+const ChatListComponent = ({ user, setCon }) => {
     const compressName = (name) => {
         let firstName = name.split(" ");
         if (firstName.length > 1) {
@@ -16,7 +16,7 @@ const ChatListComponent = ({ user }) => {
             return firstName;
         }
     }
-
+    console.log(user.imageUrl);
     const compressMessage = (name) => {
         let firstName = name.split(" ");
         firstName = firstName[0] + " " + firstName[1];
@@ -33,9 +33,12 @@ const ChatListComponent = ({ user }) => {
 
 
     }
-
+    const setting = () => {
+        console.log("beingset");
+        setCon(true);
+    }
     return (
-        <div id='chatListComponent'>
+        <div id='chatListComponent' onClick={setting}>
             <div id='chatListComponentImageWrap'>
                 <img id='chatListComponentImage' alt="profile-img" src={user.imageUrl ? user.imageUrl : emptyImage} />
             </div>

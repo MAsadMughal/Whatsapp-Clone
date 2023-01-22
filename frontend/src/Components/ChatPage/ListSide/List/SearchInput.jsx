@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../ChatPage.css";
+import "../../ChatPage.css";
 import { Search } from "@mui/icons-material";
 
 const SearchInput = () => {

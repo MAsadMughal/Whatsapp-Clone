@@ -1,7 +1,8 @@
 import React from "react";
-import "../ChatPage.css";
+import "../../ChatPage.css";
 import ChatIcon from "@mui/icons-material/Chat";
 import PopupMenu from "./PopupMenu";
+
 const Topbar = ({ setProfile }) => {
     return (
         <div id="listSideTopBar">

@@ -7,7 +7,6 @@ body {
   width: 90%;
   overflow: hidden;
   border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
   margin-top: 2%;
   display: flex;
   flex-direction: row;
@@ -22,8 +21,12 @@ body {
   background-color: white;
 }
 #chatBoxSide {
-  background-color: black;
+  position: relative;
   flex: 2;
+  border: 2px solid black;
+  background-color: white;
+  border-top: none;
+  border-bottom-right-radius: 0px;
   border-left: 3px solid black;
 }
 #listSideTopBar {
@@ -63,7 +66,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-radius: 30px;
+  border-radius: 13px;
   padding-left: 15px;
 }
 #searchInputBoxListSide {
@@ -177,4 +180,66 @@ select:focus {
 }
 #chatListComponentNameAndMsg {
   overflow-inline: scroll;
+}
+
+#chatSideImgBackground {
+  max-height: 80vh;
+}
+#chatSideComponentName {
+  color: white;
+}
+
+#chatSideComponentStatus {
+  color: white;
+}
+
+#chatListComponentNameAndStatus {
+  flex: 5;
+  padding-left: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#chatBoxSideTopBar {
+  box-shadow: lightblue;
+  background-color: darkslategray;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#allInputsWrapChatSide {
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  height: 10%;
+  width: 100%;
+  background-color: #ededed;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+#EmojiInputChat {
+  opacity: 0.5;
+  cursor: pointer;
+  flex: 0.52;
+}
+#FileInputClipChat {
+  opacity: 0.5;
+  cursor: pointer;
+  flex: 0.52;
+}
+#InputTextChatBox {
+  opacity: 0.85;
+  padding-left: 15px;
+  font-size: 15px;
+  flex: 10;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+}
+#MicInputChat {
+  opacity: 0.5;
+  cursor: pointer;
+  flex: 1;
 }

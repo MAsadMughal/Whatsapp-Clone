@@ -3,7 +3,6 @@ import { Menu } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import { useDispatch } from "react-redux";
-import { logout } from "../../../actions/userActions";
 
 
 export default function PopupMenu({ setProfile }) {
@@ -21,9 +20,7 @@ export default function PopupMenu({ setProfile }) {
         setOpen(null);
         setProfile(true);
     }
-    const logoutFunction = () => {
-        dispatch(logout());
-    }
+
 
     return (<>
         <MoreVertIcon onClick={handleMenu} />
@@ -44,7 +41,6 @@ export default function PopupMenu({ setProfile }) {
         >
             <MenuItem onClick={profileFunction}>Profile</MenuItem>
             <MenuItem onClick={profileFunction}>My account</MenuItem>
-            <MenuItem onClick={logoutFunction}>Logout</MenuItem>
         </Menu>
     </>);
 }
