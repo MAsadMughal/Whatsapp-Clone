@@ -1,8 +1,8 @@
 import { Box, Dialog, List, ListItem, styled, Typography } from "@mui/material";
-import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import jwtDecode from 'jwt-decode';
-import { useDispatch, useSelector } from "react-redux"
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { googleUserLogin } from "../../../actions/userActions";
 
 const Dialogue = () => {
@@ -20,18 +20,16 @@ const Dialogue = () => {
     boxShadow: "none",
     overflow: "hidden",
   }
-  const {isAuthenticated} = useSelector(state => state.user);
+  const { isAuthenticated } = useSelector(state => state.user);
 
   const googleError = (res) => {
     console.log('Login Failed: ', res);
 
   }
-
   const googleSuccess = (res) => {
     const cred = (jwtDecode(res.credential));
     console.log(cred);
-    dispatch(googleUserLogin(cred.name, cred.email, cred.picture))
-
+    dispatch(googleUserLogin(cred.name, cred.email, cred.picture));
   }
 
 
@@ -45,7 +43,7 @@ const Dialogue = () => {
             <Item>
               <ListItem>1. Open Whatsapp On Your Computer.</ListItem>
               <ListItem>2. Open Menu settings and select Whatsapp Web.</ListItem>
-              <ListItem>3. Point Your Phone to this screen to capture the code. {isAuthenticated ? "asadHere":""}</ListItem>
+              <ListItem>3. Point Your Phone to this screen to capture the code. {isAuthenticated ? "asadHere" : ""}</ListItem>
             </Item>
           </Box>
           <Box position={'relative'}>

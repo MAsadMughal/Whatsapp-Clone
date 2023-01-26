@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllUsers, loadUser } from "../../../../actions/userActions";
+import { Divider } from "@mui/material";
+import React, { useState, useEffect } from "react";
 import "../../ChatPage.css";
 import ChatListComponent from "../List/ChatListComponent";
-import Profilepage from "../ProfileDetails/Profilepage";
 import SearchInput from "../List/SearchInput";
 import Topbar from "../List/Topbar";
-import Loader from "../../../Loader/Loader"
-import { Divider } from "@mui/material";
+import Profilepage from "../ProfileDetails/Profilepage";
 
 
-const ListSide = ({ setCon, allUsers, currentUser }) => {
+const ListSide = ({ setCon, allUsers, currentUser, isAuthenticated }) => {
     const [profile, setProfile] = useState(false);
+    const [list, setlist] = useState([]);
+    const [input, setInput] = useState("");
+
+
+    useEffect(() => {
+        setlist(allUsers.filter(user => user.name.toLowerCase().includes(input.toLowerCase())));
+    }, [input])
+
+
 
     return (
         <>
@@ -20,17 +26,15 @@ const ListSide = ({ setCon, allUsers, currentUser }) => {
                     <Profilepage setProfile={setProfile} />
                 </div>
             ) : (
-
                 <div id="chatListSide">
                     <Topbar setProfile={setProfile} />
-                    <SearchInput />
+                    <SearchInput input={input} setInput={setInput} />
                     {
-                        allUsers.length >= 1 && allUsers.flatMap((item, ind) => {
-                            console.log(item);
-                            return item.email !== currentUser.email ? (<div key={ind}>
+                        list && list.map((item, ind) => {
+                            return (<div key={ind}>
                                 <Divider />
                                 <ChatListComponent setCon={setCon} user={item} />
-                            </div>) : null
+                            </div>)
                         })
                     }
                 </div>

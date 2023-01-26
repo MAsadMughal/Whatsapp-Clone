@@ -2,15 +2,20 @@ import React from "react";
 import "../../ChatPage.css";
 import ChatIcon from "@mui/icons-material/Chat";
 import PopupMenu from "./PopupMenu";
+import { useSelector } from "react-redux";
 
 const Topbar = ({ setProfile }) => {
+    const { user } = useSelector(state => state.user);
+
+
     return (
         <div id="listSideTopBar">
             <span id="profileImageTopBar">
+
                 <img
                     id="profileImgTop"
                     onClick={() => setProfile(true)}
-                    src="https://1fid.com/wp-content/uploads/2022/02/boy-dp-image-75-1024x1003.jpg"
+                    src={user?.loggedInUser?.imageUrl}
                     alt="Profile-img"
                 />
             </span>

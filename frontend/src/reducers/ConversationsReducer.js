@@ -7,17 +7,18 @@ export const currConvoReducer = (state = { currentConvo: {} }, action) => {
                 error: null,
                 loading: true
             }
-
         case CURR_CONVO_SUCCESS:
             return {
                 currentConvo: action.payload,
                 loading: false,
+                success: true
             }
 
         case CURR_CONVO_FAIL:
             return {
                 loading: false,
-                error: action.payload
+                error: action.payload,
+                success: false
             }
         case CLEAR_ERRORS:
             return {

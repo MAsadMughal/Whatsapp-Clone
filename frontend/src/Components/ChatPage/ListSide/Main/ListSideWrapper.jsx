@@ -1,27 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers } from "../../../../actions/userActions";
+import Loader from "../../../Loader/Loader";
 import "../../ChatPage.css";
-import ChatListComponent from "../List/ChatListComponent";
-import Profilepage from "../ProfileDetails/Profilepage";
-import SearchInput from "../List/SearchInput";
-import Topbar from "../List/Topbar";
-import Loader from "../../../Loader/Loader"
-import { useSelector, useDispatch } from "react-redux";
-import { getAllUsers, loadUser } from "../../../../actions/userActions";
 import ListSide from './ListSide';
 
 const ListSideWrapper = ({ setCon }) => {
-
+    const [currentUserDetails, setUserDetails] = useState({})
+    const [userList, setUserList] = useState({})
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getAllUsers());
-    }, [])
-
-
+    const { user, isAuthenticated } = useSelector(state => state.user);
+    const me = useSelector(state => state.user);
     const { allUsers, loading } = useSelector(state => state.allUsers);
-    const { user } = useSelector(state => state.user);
-    const currentUser = user && user.loggedInUser;
+    useEffect(() => {
+        if (Object.keys(currentUserDetails).length <= 0) {
+            dispatch(getAllUsers());
+            setUserDetails(user?.loggedInUser);
+        }
+    }, [user, setUserDetails, me])
+    
+
+
+    const userLoading = me && me.loading;
     return (
-        <>{loading ? <Loader /> : (Object.keys(currentUser).length && allUsers.length) ? <ListSide allUsers={allUsers} currentUser={currentUser} setCon={setCon} /> : null}</>
+        <>{(loading || userLoading) ? <Loader /> : (Object.keys(user).length && isAuthenticated && allUsers.length) ? <ListSide allUsers={allUsers} currentUser={currentUserDetails} isAuthenticated={isAuthenticated} setCon={setCon} /> : null}</>
     )
 }
 

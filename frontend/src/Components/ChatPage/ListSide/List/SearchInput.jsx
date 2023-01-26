@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import "../../ChatPage.css";
 import { Search } from "@mui/icons-material";
 
-const SearchInput = () => {
+const SearchInput = ({ input, setInput }) => {
   let [search, setSearch] = useState("");
-  const searchFunction = (e) => {
-    setSearch(e.currentTarget.value);
-  };
+
+
   return (
     <div id="searchInput-NewChat">
       {!search && <Search />}
       <input
         id="searchInputBoxListSide"
-        onChange={searchFunction}
+        onChange={(e) => { setInput(e.target.value) }}
+        value={input}
         placeholder="Search or Start New Chat"
         type="text"
       />

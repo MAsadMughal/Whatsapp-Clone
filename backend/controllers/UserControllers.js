@@ -13,7 +13,9 @@ const GoogleUser = require("../model/GoogleUser");
 exports.getAllUsers = CatchAsyncErrors(async (req, res, next) => {
     const googleUsers = await GoogleUser.find();
     const emailUsers = await User.find();
+
     let allUsers = [...googleUsers, ...emailUsers];
+    allUsers = allUsers.filter(user => user.email !== req.user.email);
     res.send(allUsers);
 
 })
