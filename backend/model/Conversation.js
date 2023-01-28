@@ -3,11 +3,11 @@ mongoose.set('strictQuery', false);
 
 
 const conversationSchema = mongoose.Schema({
-    members: {
+    members: { 
         type: Array,
     },
-    message: {
-        type: String,
+    lastMessage: {
+        type: Object,
     }
 },
     {

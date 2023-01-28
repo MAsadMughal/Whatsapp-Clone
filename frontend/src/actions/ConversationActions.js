@@ -1,12 +1,15 @@
 import { CURR_CONVO_FAIL, CURR_CONVO_REQUEST, CURR_CONVO_SUCCESS } from "../constants/ConversationsConstants";
+import axios from "axios";
 
-export const getCurrentConversation = (user) => async (dispatch) => {
+
+export const getCurrentConversation = (chattingUser) => async (dispatch) => {
     try {
         dispatch({ type: CURR_CONVO_REQUEST })
-        // const { data } = await axios.get(`/allUsers`);
+        const createConv = await axios.post('/createConversation', { receiverId: chattingUser._id });
+        const { data } = await axios.get(`/getConversation/${chattingUser._id}`);
         dispatch({
             type: CURR_CONVO_SUCCESS,
-            payload: user
+            payload: chattingUser
         })
     } catch (error) {
         dispatch({

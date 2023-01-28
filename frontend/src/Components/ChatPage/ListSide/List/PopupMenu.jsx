@@ -23,6 +23,7 @@ export default function PopupMenu({ setProfile }) {
     }
     const logoutFunction = () => {
         dispatch(logout());
+        window.location.reload();
     }
 
     return (<>

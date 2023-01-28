@@ -131,7 +131,7 @@ exports.getUserDetails = CatchAsyncErrors(async (req, res, next) => {
     if (!loggedInUser) {
         return next(new ErrorHandler("Not Signed In.", 400));
     }
-    res.status(200).json({ success: true, loggedInUser });
+    res.status(200).json({ success: true, user: loggedInUser });
 })
 
 
@@ -141,7 +141,7 @@ exports.getGUserDetails = CatchAsyncErrors(async (req, res, next) => {
     if (!loggedInUser) {
         return next(new ErrorHandler("Not Signed In.", 400));
     }
-    res.status(200).json({ success: true, loggedInUser });
+    res.status(200).json({ success: true, user: loggedInUser });
 })
 
 

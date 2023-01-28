@@ -1,12 +1,23 @@
 import { AttachFileOutlined, EmojiEmotionsOutlined, MicOutlined, SendOutlined } from '@mui/icons-material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMessages, sendNewMessage } from '../../../../../actions/MessageActions';
 import "../../../ChatPage.css";
 
-const MainInput = () => {
+const MainInput = ({ toUser }) => {
     const [input, setInput] = useState("")
-    const sendMessage = () => {
+    const dispatch = useDispatch();
+    const { user } = useSelector(state => state.user);
 
+    const sendMessage = () => {
+        dispatch(sendNewMessage(user._id, toUser._id, input));
+        dispatch(getMessages(toUser._id));
+        setInput("");
     }
+
+
+
+
 
     return (
         <div id='allInputsWrapChatSide'>

@@ -4,6 +4,8 @@ body {
 }
 #chatboxMain {
   min-height: 90vh;
+  max-height: 90vh;
+  position: relative;
   width: 90%;
   overflow: hidden;
   border-bottom-left-radius: 50px;
@@ -21,8 +23,8 @@ body {
   background-color: white;
 }
 #chatBoxSide {
-  position: relative;
   flex: 2;
+  overflow-y: scroll;
   border: 2px solid black;
   background-color: white;
   border-top: none;
@@ -207,17 +209,19 @@ select:focus {
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: fixed;
+  width: 59.5%;
 }
 #allInputsWrapChatSide {
-  position: absolute;
-  bottom: 0px;
   display: flex;
   align-items: center;
   height: 10%;
-  width: 100%;
+  width: 66%;
   background-color: #ededed;
   justify-content: space-evenly;
   flex-direction: row;
+  position: absolute;
+  bottom: 2px;
 }
 #EmojiInputChat {
   opacity: 0.5;
@@ -233,13 +237,73 @@ select:focus {
   opacity: 0.85;
   padding-left: 15px;
   font-size: 15px;
-  flex: 10;
   height: 35px;
+  flex: 10;
   border: none;
   border-radius: 10px;
 }
 #MicInputChat {
   opacity: 0.5;
   cursor: pointer;
-  flex: 1;
+  flex: 0.8;
+}
+
+@media (min-width: 1020px) {
+  #chatBoxSideTopBar {
+    width: 59.7%;
+  }
+}
+@media (max-width: 700px) {
+  #InputTextChatBox {
+    flex: 2;
+    margin-right: 0px;
+  }
+  #MicInputChat {
+    flex: 0.5;
+  }
+  #EmojiInputChat {
+    margin-left: 1%;
+    flex: 0.3;
+  }
+  #FileInputClipChat {
+    flex: 0.3;
+  }
+}
+
+@media (max-width: 700px) {
+  #InputTextChatBox {
+    flex: 2;
+    margin-right: 0px;
+  }
+  #MicInputChat {
+    flex: 0.5;
+  }
+  #EmojiInputChat {
+    flex: 0.3;
+  }
+  #FileInputClipChat {
+    flex: 0.3;
+  }
+  #allInputsWrapChatSide {
+    width: 95%;
+    padding-left: 20px;
+  }
+  #chatboxMain {
+    min-height: 120vh;
+    flex-direction: column;
+    border-radius: 0px;
+  }
+  #chatListSide {
+    border-radius: 0px;
+  }
+  #chatBoxSideTopBar {
+    width: 100%;
+    position: sticky;
+  }
+}
+@media (max-width: 450px) {
+  #allInputsWrapChatSide {
+    padding-left: 3%;
+    bottom: 2px;
+  }
 }

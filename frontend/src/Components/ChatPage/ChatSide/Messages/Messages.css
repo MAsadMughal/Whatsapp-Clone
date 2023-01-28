@@ -1,0 +1,82 @@
+#senderImage {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50px;
+}
+#sentTextWrapped {
+  padding-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #dcf8c6;
+  margin-right: 2vh;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+#sentText {
+  text-align: left;
+  margin-bottom: 0px;
+  padding: 0% 1vh 0% 1vh;
+}
+#sentDiv {
+  margin-top: 1%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#sendingTime {
+  opacity: 0.6;
+  color: black;
+  font-size: medium;
+  margin-top: 0px;
+  padding-top: 0px;
+  text-align: right;
+  padding-left: 50px;
+  padding-right: 10px;
+}
+
+#receiverImage {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50px;
+}
+
+#receivedDiv {
+  margin-top: 1%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#encrypted {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  font-family: sans-serif;
+  padding: 2% 2% 2% 2%;
+  border-radius: 15px;
+  margin-bottom: 50px;
+  background-color: antiquewhite;
+}
+
+#receivedTextWrapped {
+  padding-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #efefef;
+  margin-left: 2vh;
+  display: flex;
+  margin-bottom: 1vh;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+#receivingTime {
+  opacity: 0.6;
+  color: black;
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+}

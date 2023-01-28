@@ -1,0 +1,51 @@
+#MessagesWrapper {
+  padding: 60px 10px 50px 10px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+#receivedSideDiv {
+  align-self: flex-start;
+  margin-right: 20%;
+}
+#sentSideDiv {
+  align-self: flex-end;
+  margin-left: 20%;
+}
+#allMessages {
+  display: flex;
+  flex-direction: column;
+}
+
+#dateForChat {
+  align-self: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 3%;
+  font-family: sans-serif;
+  margin-bottom: 3%;
+  background-color: azure;
+  border-radius: 10px;
+  width: 15%;
+}
+
+@media (max-width: 1040px) {
+  #dateForChat {
+    width: 20%;
+  }
+}
+@media (max-width: 800px) {
+  #dateForChat {
+    width: 25%;
+  }
+}
+@media (max-width: 450px) {
+  #dateForChat {
+    width: 35%;
+  }
+  #MessagesWrapper {
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+}

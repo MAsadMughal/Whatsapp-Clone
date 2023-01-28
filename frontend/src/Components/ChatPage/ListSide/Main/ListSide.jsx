@@ -7,7 +7,7 @@ import Topbar from "../List/Topbar";
 import Profilepage from "../ProfileDetails/Profilepage";
 
 
-const ListSide = ({ setCon, allUsers, currentUser, isAuthenticated }) => {
+const ListSide = ({ setCon, allUsers }) => {
     const [profile, setProfile] = useState(false);
     const [list, setlist] = useState([]);
     const [input, setInput] = useState("");
@@ -16,7 +16,6 @@ const ListSide = ({ setCon, allUsers, currentUser, isAuthenticated }) => {
     useEffect(() => {
         setlist(allUsers.filter(user => user.name.toLowerCase().includes(input.toLowerCase())));
     }, [input])
-
 
 
     return (

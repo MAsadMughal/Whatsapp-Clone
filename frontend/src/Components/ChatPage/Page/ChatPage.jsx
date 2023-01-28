@@ -6,12 +6,11 @@ import ListSideWrapper from '../ListSide/Main/ListSideWrapper';
 
 
 const ChatPage = () => {
-    const [con, setCon] = useState(false);
     return (
         <center>
             <div id='chatboxMain'>
-                <ListSideWrapper setCon={setCon} />
-                <ChatSide con={con} />
+                <ListSideWrapper />
+                <ChatSide  />
             </div>
         </center>
     )

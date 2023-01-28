@@ -14,14 +14,15 @@ const messageSchema = mongoose.Schema({
     },
     text: {
         type: String,
-    }
-    , type: {
+    },
+    type: {
         type: String,
+        default:"Text"
     },
 }, {
     timestamps: true
 });
 
-const Message= mongoose.model("Message", messageSchema);
+const Message = mongoose.model("Message", messageSchema);
 
 module.exports = Message;

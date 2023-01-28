@@ -23,12 +23,10 @@ const Dialogue = () => {
   const { isAuthenticated } = useSelector(state => state.user);
 
   const googleError = (res) => {
-    console.log('Login Failed: ', res);
-
+    console.log('Login Failed');
   }
   const googleSuccess = (res) => {
     const cred = (jwtDecode(res.credential));
-    console.log(cred);
     dispatch(googleUserLogin(cred.name, cred.email, cred.picture));
   }
 

@@ -2,13 +2,14 @@ import React from 'react'
 import "../../ChatPage.css";
 import emptyImage from "../../../../Images/emptyImage.png";
 import { Typography } from '@mui/material';
-import { getCurrentConversation } from '../../../../actions/ConversationReducer';
+import { getCurrentConversation } from '../../../../actions/ConversationActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { getMessages } from '../../../../actions/MessageActions';
 
 
-const ChatListComponent = ({ user, setCon }) => {
+const ChatListComponent = ({ user }) => {
     const dispatch = useDispatch();
-
+    const conversation = useSelector(state => state.currentConversation)
     const compressName = (name) => {
         let firstName = name.split(" ");
         if (firstName.length > 1) {
@@ -40,13 +41,13 @@ const ChatListComponent = ({ user, setCon }) => {
     }
 
 
-
     const getConversation = () => {
-        dispatch(getCurrentConversation(user));
+        if (conversation?.currentConvo?.email !== user?.email) {
+            dispatch(getCurrentConversation(user));
+        }
     }
-
     return (
-        <div id='chatListComponent' onClick={getConversation}>
+        <div id='chatListComponent' style={(conversation?.currentConvo?.email === user?.email) ? { backgroundColor: "#34b7f1" } : null} onClick={getConversation}>
             <div id='chatListComponentImageWrap'>
                 <img id='chatListComponentImage' alt="profile-img" src={user.imageUrl ? user.imageUrl : emptyImage} />
             </div>
